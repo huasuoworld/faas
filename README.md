@@ -1,18 +1,20 @@
 
 
-# faas
+# faas 函数即服务
 
-提起函数式编程（function as a service）就要从云计算行业先驱aws的 lambda讲起，下面摘自AWS官网：
+提起faas（function as a service）就要从云计算行业先驱aws的 lambda讲起，下面摘自AWS官网：
 
 ```
 AWS Lambda 是一项[无服务器计算](https://aws.amazon.com/serverless/)服务，可运行代码来响应事件并为您自动管理底层计算资源。
 ```
 
+![](flannel-v0.11.0-linux-amd64.png)
+
 lambda虽好但是需要购买aws服务、公司的服务器是自建或者其他云厂商的等因素，那能不能搭建一套属于自己的lambda呢？
 
 市面上流行的开源函数式编程的产品有openwish、kubeless等，这两款都比较成熟，如果微服务框架是k8s，那么kubeless原生的比较合适。但是open wish，kubeless使用起来还是略微有些繁琐，对于开发需要掌握比较多的知识，便捷性还达不到lambda的程度。那有没有一款框架能使我们开发人员快速开发功能呢？那么serverless framework的优势就出来了，它主要解决的是 从生成函数式项目 到部署到各个函数式编程产品到k8s或者aws的一款框架。
 
-到此我们有了类lambda函数式编程中的函数部分，那么数据库部分怎么解决？传统的关系型数据库放在函数上肯定不行，但是aws的firebase就能解决这种函数式编程中的数据库调用问题。还是一样的问题：我们有没有替代的解决方案呢？
+到此我们有了类lambda函数式编程中的函数部分，那么数据库部分怎么解决？传统的关系型数据库放在函数上肯定不行，但是google的firebase却能解决这种函数式编程中的数据库调用问题。还是一样的问题：我们有没有替代的解决方案呢？
 
 java程序员熟悉的一个框架spring data rest 就是解决数据库层自动暴露api的框架，比如我们建立好数据库，那么我们可以用idea插件快速生成所有表的modle和repository，spring data rest 帮我们创建好的repository的所有接口暴露成api。到此firebase的问题也解决了。
 
@@ -47,7 +49,11 @@ kubectl create -f https://github.com/kubeless/kubeless/releases/download/v1.0.5/
 
 1、创建kubeless
 
+```bash
 serverless create --template kubeless-nodejs --path serverless_project
+```
+
+
 
 2、hello world
 
@@ -218,3 +224,15 @@ http://localhost:8080/api/v1/namespaces/default/services/capitalize:http-functio
 
 
 如有疑问请联系huasuoworld@outlook.com
+
+
+
+参考文献：
+
+https://aws.amazon.com/cn/lambda/
+
+https://serverless.com/
+
+https://kubeless.io/
+
+https://kubernetes.io/
