@@ -29,15 +29,12 @@ class MainContent extends React.Component {
         this.setState({
             isLoading: true
         })
-        fetch(HttpTools.APIS.findAll)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data._embedded.contacts)
-                this.setState({
-                    contacts: data._embedded.contacts,
-                    isLoading: false
-                })
+        HttpTools.get(HttpTools.APIS.findAll, '', (data) => {
+            this.setState({
+                contacts: data._embedded.contacts,
+                isLoading: false
             })
+        })
     }
     render() {
         if(this.state.isLoading || !this.state || !this.state.contacts) {
