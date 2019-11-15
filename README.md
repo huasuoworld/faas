@@ -275,6 +275,8 @@ module.exports = {
 
 http://localhost:8080/api/v1/namespaces/default/services/contact:http-function-port/proxy/
 
+![](WechatIMG197.png)
+
 
 
 ![](contact.png)
