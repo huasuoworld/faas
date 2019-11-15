@@ -97,13 +97,31 @@ module.exports = {
 };
 ```
 
+部署
+
+```bash
+serverless deploy -v
+```
+
+
+
 3、暴露k8s api
 
 kubectl proxy -p 8080 &
 
 4、检查函数是否正常
 
+安装kubeless-ui
+
+```
+kubectl create -f https://raw.githubusercontent.com/kubeless/kubeless-ui/master/k8s.yaml
+```
+
+![](WechatIMG195.png)
+
 http://localhost:8080/api/v1/namespaces/default/services/capitalize:http-function-port/proxy/
+
+
 
 5、创建mysql表
 
@@ -186,36 +204,76 @@ CREATE TABLE `contact` (
 
 7、自动生成modle和repository
 
+![](WechatIMG196.png)
+
 8、修改hello world 函数
 
 将hello world 函数改造一下
 
+```
+# Welcome to Serverless!
+#
+# For full config options, check the kubeless plugin docs:
+#    https://github.com/serverless/serverless-kubeless
+#
+# For documentation on kubeless itself:
+#    http://kubeless.io
+
+# Update the service name below with your own service name
+service: serverless-project
+
+# Please ensure the serverless-kubeless provider plugin is installed globally.
+# $ npm install -g serverless-kubeless
+#
+# ...before installing project dependencies to register this provider.
+# $ npm install
+
+provider:
+  name: kubeless
+  runtime: nodejs8
+
+plugins:
+  - serverless-kubeless
+
+functions:
+  contact:
+    handler: handler.contact
+```
+
 ```js
 'use strict';
 
-const axios = require('axios');
+const axios = require('axios')
 
 module.exports = {
-  async capitalize(event, context) {
+  async contact(event, context) {
       let a = new Date();
+      console.log(event.extensions.request.headers)
+      console.log(event.data)
+
+      let baseurl = event.extensions.request.headers.baseurl
+      if(!baseurl) {
+          return "baseurl is null!"
+      }
+
       const options = {
         method: "GET",
-        url: "http://172.20.10.4:9091/contacts",
+        url: baseurl + "/contacts",
         data: {page: 0, size: 20}
       }
 
-      let req = await axios(options);
-      console.log(req.data);
-      console.log("GET /hello/world 304 " + (a  - (new Date())) + " ms - -");
-      return req.data;
+      let req = await axios(options)
+      console.log(req.data)
+      console.log("GET /hello/world 304 " + (a  - (new Date())) + " ms - -")
+      return req.data
   },
-};
+}
 
 ```
 
 检查下数据是否已经出来
 
-http://localhost:8080/api/v1/namespaces/default/services/capitalize:http-function-port/proxy/
+http://localhost:8080/api/v1/namespaces/default/services/contact:http-function-port/proxy/
 
 
 
