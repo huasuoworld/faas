@@ -2,6 +2,8 @@
 
 # faas 函数即服务
 
+传统的微服务架构当中我们需要考虑方方面面：cpu，memory，disk，os update，io，application updates，network configurations，container configrations，k8s configrations，etc，而新兴的serverless为程序员抹平了这些，从devops过度到了NoOps。
+
 提起faas（function as a service）就要从云计算行业先驱aws的 lambda讲起，下面摘自AWS官网：
 
 ```
