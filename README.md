@@ -125,7 +125,9 @@ module.exports = {
 serverless deploy -v
 ```
 
+我们可以查看下不使用时函数所占用的资源
 
+![](WechatIMG203.png)
 
 3、暴露k8s api
 
