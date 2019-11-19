@@ -4,6 +4,26 @@
 
 传统的微服务架构当中我们需要考虑方方面面：cpu，memory，disk，os update，io，application updates，network configurations，container configrations，k8s configrations，etc，而新兴的serverless为程序员抹平了这些，从devops过度到了NoOps。
 
+faas使用场景有：
+
+```
+机器学习与数据训练
+
+分布式流处理
+
+用户seesion，购物车，缓存
+
+分布式、弹性节点
+```
+
+
+
+faas CRDTs(from：https://www.youtube.com/watch?v=J3PyYmdTsnQ by：Jonas Bonér, Lightbend Inc， KubeCon / CloudNativeCon Europe 2019)：
+
+![](WechatIMG199.png)
+
+
+
 提起faas（function as a service）就要从云计算行业先驱aws的 lambda讲起，下面摘自AWS官网：
 
 ```
@@ -109,7 +129,7 @@ serverless deploy -v
 
 3、暴露k8s api
 
-kubectl proxy -p 8080 &
+kubectl proxy -p 8080
 
 4、检查函数是否正常
 
@@ -273,11 +293,15 @@ module.exports = {
 
 ```
 
+9.新增traefix路由
+
+参考traefix01.yaml,traefix02.yaml,traefix03.yaml,contact.yml
+
 检查下数据是否已经出来
 
-http://localhost:8080/api/v1/namespaces/default/services/contact:http-function-port/proxy/
+http://localhost:8000/contact
 
-![](WechatIMG197.png)
+
 
 
 
