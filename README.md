@@ -2,7 +2,7 @@
 
 # faas 函数即服务
 
-传统的微服务架构当中我们需要考虑方方面面：cpu，memory，disk，os update，io，application updates，network configurations，container configrations，k8s configrations，etc，而新兴的serverless为程序员抹平了这些，从devops过度到了NoOps。
+传统的微服务架构当中我们需要考虑方方面面：cpu，memory，disk，os update，io，application updates，network configurations，container configrations，k8s configrations，etc，而新兴的serverless为程序员抹平了这些，从devops过度到了ServerlessOps。
 
 faas使用场景有：
 
