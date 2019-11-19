@@ -5,7 +5,7 @@ class HttpTools  {
     static APIS = {
         baseurl: "http://172.20.10.2:9091",
         save: "http://localhost:9091/contact",
-        findAll: "http://localhost:8080/api/v1/namespaces/default/services/contact:http-function-port/proxy/"
+        findAll: "http://localhost:8000/contact"
     }
     static post(url, data, callback) {
         data.page = 0;
