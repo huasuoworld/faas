@@ -80,6 +80,8 @@ serverless create --template kubeless-nodejs --path serverless_project
 2、hello world
 
 ```yaml
+# Welcome to Serverless!
+#
 # For full config options, check the kubeless plugin docs:
 #    https://github.com/serverless/serverless-kubeless
 #
@@ -87,7 +89,7 @@ serverless create --template kubeless-nodejs --path serverless_project
 #    http://kubeless.io
 
 # Update the service name below with your own service name
-service: serverless-project
+service: helloworld-project
 
 # Please ensure the serverless-kubeless provider plugin is installed globally.
 # $ npm install -g serverless-kubeless
@@ -103,8 +105,10 @@ plugins:
   - serverless-kubeless
 
 functions:
-  capitalize:
-    handler: handler.capitalize
+  helloworld:
+    handler: handler.helloworld
+    port: 8082
+
 ```
 
 请注意nodejs7.5以下不支持await
@@ -113,10 +117,11 @@ functions:
 'use strict';
 
 module.exports = {
-  capitalize(event, context) {
-    return 'hello world';
+  helloworld(event, context) {
+    return "hello world!";
   },
 };
+
 ```
 
 部署
@@ -298,6 +303,8 @@ module.exports = {
 9.新增traefix路由
 
 参考traefix01.yaml,traefix02.yaml,traefix03.yaml,contact.yml
+
+kubectl port-forward --address 0.0.0.0 service/traefik 8000:8000 8080:8080 443:4443 -n default
 
 检查下数据是否已经出来
 
