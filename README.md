@@ -311,7 +311,9 @@ kubectl port-forward --address 0.0.0.0 service/traefik 8000:8000 8080:8080 443:4
 http://localhost:8000/contact
 
 
-
+10.自主可控的函数式编程
+替代kubeless、faas等函数式产品的简洁替代方案，适合中小型项目使用，自主可控简单易维护。
+参考：https://github.com/huasuoworld/api_foundation
 
 
 ![](contact.png)
